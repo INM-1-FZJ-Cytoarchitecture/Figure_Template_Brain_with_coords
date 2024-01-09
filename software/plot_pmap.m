@@ -26,9 +26,15 @@ function [h_figure, h_patch] = plot_pmap(h_figure, niftiFilename, displayName, i
     if nargin < 6 || isempty(edgeColor), edgeColor = 'none'; end
     if nargin < 7 || isempty(faceAlpha), faceAlpha = 0.4; end
 
+    % Vollständiger Pfad des Skriptes, inklusive Dateiname
+    fullPath = mfilename('fullpath');
+    
+    % Trennen des Pfades vom Dateinamen
+    [pfad, ~, ~] = fileparts(fullPath);
+
 
     % Einlesen der NIFTI-Datei
-    niftiFile = fullfile('.', 'input_data', 'orig_volume_as_nifti', niftiFilename);
+    niftiFile = fullfile(pfad,'..', 'input_data', 'orig_volume_as_nifti', niftiFilename);
     header = spm_vol(niftiFile);
     vol = spm_read_vols(header);
 

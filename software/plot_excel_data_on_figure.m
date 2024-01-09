@@ -18,8 +18,14 @@ function h_figure = plot_excel_data_on_figure(h_figure, template, excelFilename)
     
     if nargin < 4, view_angle = [129.0, 29.4]; end
 
+    % Vollständiger Pfad des Skriptes, inklusive Dateiname
+    fullPath = mfilename('fullpath');
+    
+    % Trennen des Pfades vom Dateinamen
+    [pfad, ~, ~] = fileparts(fullPath);
+
     % Pfad zur Excel-Datei konstruieren
-    baseDir = fullfile('.', 'input_data', 'coordinate_files');
+    baseDir = fullfile(pfad,'..', 'input_data', 'coordinate_files');
     fullPathToFile = fullfile(baseDir, excelFilename);
 
     % Überprüfen, ob die Excel-Datei existiert

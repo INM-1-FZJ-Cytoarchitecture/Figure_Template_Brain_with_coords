@@ -20,8 +20,17 @@ function [h_figure, template, template_vol] = visualize_template(z_level_section
     if nargin < 4, iso_cap = 10; end
     if nargin < 5, view_angle = [129.0, 29.4]; end
 
+    % Vollständiger Pfad des Skriptes, inklusive Dateiname
+    fullPath = mfilename('fullpath');
+    
+    % Trennen des Pfades vom Dateinamen
+    [pfad, ~, ~] = fileparts(fullPath);
+
+    % Definieren Sie die erforderlichen Pfade
+   % templateFolder = fullfile(pfad,'..', '');
+
     % Laden des Templates
-    templateFile = fullfile('.', 'input_data', 'template_volume', 'mni_icbm152_t1_tal_nlin_asym_09c.nii');
+    templateFile = fullfile(pfad,'..', 'input_data', 'template_volume', 'mni_icbm152_t1_tal_nlin_asym_09c.nii');
     template = spm_vol(templateFile);
     template_vol = spm_read_vols(template);
 
