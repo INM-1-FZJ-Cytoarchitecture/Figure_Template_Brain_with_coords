@@ -1,5 +1,16 @@
-# Cloning and Running the 'Figure_Template_Brain_with_coords' Git Repository in MATLAB
+# MATLAB Script plot coordinates as spheres within MNI152 template
 
+## Table of Contents
+1. [Install](#Install)
+2. [Dependencies](#dependencies)
+3. [Script Overview](#script-overview)
+4. [Functions and Their Parameters](#functions-and-their-parameters)
+5. [Execution Steps](#execution-steps)
+
+
+
+
+## Install
 ## Prerequisites to install/clone the Repository
 - MATLAB (preferably the latest version)
 - Git installed and configured on your computer
@@ -24,32 +35,6 @@
     - Select **Git** as source control.
     - Enter the URL: `https://github.com/INM-1-FZJ-Cytoarchitecture/Figure_Template_Brain_with_coords` and choose the desired path for cloning.
     - Click on **Retrieve**.
-
-### Switching to the Cloned Folder
-- After successful cloning, switch to the cloned directory in the terminal or MATLAB:
-  ```
-  cd path_to/Figure_Template_Brain_with_coords
-  ```
-
-### Running the Script
-- Inside the 'Figure_Template_Brain_with_coords' directory, start the main script (e.g., `plot_maps_and_coordinates.m`) by entering the following command in MATLAB:
-  ```
-  plot_maps_and_coordinates
-  ```
-- Ensure that all required dependencies or data specified in the repository's documentation are present to successfully execute the script.
-
-
-# MATLAB Script plot coordinates as spheres within MNI152 template
-
-This documentation provides a detailed overview of the dependencies, functions, and execution steps of the MATLAB script for visualizing brain maps.
-
-## Table of Contents
-1. [Dependencies](#dependencies)
-2. [Script Overview](#script-overview)
-3. [Functions and Their Parameters](#functions-and-their-parameters)
-4. [Execution Steps](#execution-steps)
-
----
 
 ## Dependencies
 ### Required Files and Folders
@@ -90,7 +75,18 @@ The script performs the following main functions:
 ---
 
 ## Execution Steps
-1. **Initialization**: Clear all variables, close all windows, and clear the Command Window.
+### Switching to the Cloned Folder
+- After successful cloning, switch to the cloned directory in the terminal or MATLAB:
+  ```
+  cd path_to/Figure_Template_Brain_with_coords
+  ```
+
+### Running the Script
+- Inside the 'Figure_Template_Brain_with_coords' directory, start the main script (e.g., `plot_maps_and_coordinates.m`) by entering the following command in MATLAB:
+  ```
+  plot_maps_and_coordinates
+  ```
+- Ensure that all required dependencies or data specified in the repository's documentation are present to successfully execute the script.
 
 ---
 
