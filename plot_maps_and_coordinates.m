@@ -80,6 +80,7 @@ hfig = plot_excel_data_on_figure(hfig,template,'FEF_activations_Bedini_2021_and_
 %       Standardwert: [0 0.5 0]
 %       % edgeColor (string, optional) - Farbe der Kanten. Standardwert: 'none'.
 %       % faceAlpha (double, optional) - Transparenz der Isosurface. Standardwert: 0.4.
+%       % varargin (key-value pairs, optional) - Zusätzliche optionale Parameter. Beinhaltet 'MPM' mit einem Integer-Wert ungleich 0.
 %   
 %       %
 %       % Rückgabe:
@@ -88,10 +89,22 @@ hfig = plot_excel_data_on_figure(hfig,template,'FEF_activations_Bedini_2021_and_
 %
 
 % kann für beliebig viele pmaps wiederholt werden
-%[hfig, h_patch_Fp1] = plot_pmap(hfig, 'Area-Fp1_pmap_l_N10_nlin2ICBM152asym2009c.nii', 'Fp1');
-[hfig, h_patch_6v2] = plot_pmap(hfig, '6v2_l.nii', '6v2_l','0.001',[1 0 0],'none',0.2);
 
-[hfig, h_patch_Fp1] = plot_pmap(hfig, 'JulichBrainAtlas_3.1_206areas_MPM_lh_Colin27_filling.nii', 'Fp1_l','81',[1 0 0],'none',0.2);
+%plotte eine Karte und definiere den Namen der Karte in der Legende mit
+%default Werten für isovalue und weitere Parameter
+[hfig, h_patch_Fp1] = plot_pmap(hfig, 'Area-Fp1_pmap_l_N10_nlin2ICBM152asym2009c.nii', 'Fp1');
+
+%plotte eine weitere Karte und definiere den Namen der Karte in der
+%Legende. Isowert, RGB Wert und weitere Parameter können angepasst werden.
+%Siehe Funktions definnition weiter oben. Reihenfolge beachten!
+[hfig, h_patch_6v2] = plot_pmap(hfig, '6v2_l.nii', '6v2\_l','0.001',[1 0 0],'none',0.2);
+% wiederhole diese Zeile mit jeder Karte die geplottet werden soll
+
+%plotte eine Karte aus einer MPM und definiere den Namen der Karte in der
+%Legende. Isowert wird ignoriert, dafür muss 'MPM' definiert sein und ein
+%Integer ungleich null, welcher den Grauwert der Karte in der MPM angiebt.
+%Weitere Karten aus der MPM können durch dublizierung der Zeile erfolgen.
+[hfig, h_patch_MFG4] = plot_pmap(hfig, 'JulichBrainAtlas_3.1_206areas_MPM_lh_Colin27_filling.nii', 'MFG4\_l','103',[0 0 1],'none',0.1,'MPM',103);
 
 %%
 %es werde Licht

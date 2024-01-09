@@ -1,4 +1,4 @@
-function [h_figure, h_patch] = plot_pmap(h_figure, niftiFilename, displayName, isoValue, faceColor, edgeColor, faceAlpha)
+function [h_figure, h_patch] = plot_pmap(h_figure, niftiFilename, displayName, isoValue, faceColor, edgeColor, faceAlpha, varargin)
     % plot_pmap erstellt und visualisiert eine Isosurface für eine gegebene NIFTI-Datei.
     %
     % Eingabeparameter:
@@ -9,7 +9,7 @@ function [h_figure, h_patch] = plot_pmap(h_figure, niftiFilename, displayName, i
     % faceColor (1x3 vector, optional) - Farbe der Isosurface. Standardwert: [0, 128, 0]/255.
     % edgeColor (string, optional) - Farbe der Kanten. Standardwert: 'none'.
     % faceAlpha (double, optional) - Transparenz der Isosurface. Standardwert: 0.4.
-
+    % varargin (key-value pairs, optional) - Zusätzliche optionale Parameter. Beinhaltet 'MPM' mit einem Integer-Wert ungleich 0.
     %
     % Rückgabe:
     % h_figure (figure handle) - Handle des aktualisierten Figure-Objekts.
@@ -26,6 +26,18 @@ function [h_figure, h_patch] = plot_pmap(h_figure, niftiFilename, displayName, i
     if nargin < 6 || isempty(edgeColor), edgeColor = 'none'; end
     if nargin < 7 || isempty(faceAlpha), faceAlpha = 0.4; end
 
+    % Überprüfen und Extrahieren des 'MPM'-Wertes, falls vorhanden
+    MPM = [];
+    for i = 1:2:length(varargin)
+        if strcmp(varargin{i}, 'MPM')
+            MPM = varargin{i + 1};
+            if ~isnumeric(MPM) || ~isscalar(MPM) || MPM == 0
+                error('Der Wert für ''MPM'' muss eine von Null verschiedene ganze Zahl sein.');
+            end
+            break;
+        end
+    end
+
     % Vollständiger Pfad des Skriptes, inklusive Dateiname
     fullPath = mfilename('fullpath');
     
@@ -38,9 +50,20 @@ function [h_figure, h_patch] = plot_pmap(h_figure, niftiFilename, displayName, i
     header = spm_vol(niftiFile);
     vol = spm_read_vols(header);
 
+    if ~isempty(MPM) && (isnumeric(MPM) || isscalar(MPM) || MPM ~= 0)
+        vol(vol~=MPM)=0;
+        vol(vol==MPM)=MPM+1;
+    end
+    
+
     % Erstellen der Isosurface
     [X, Y, Z] = meshgrid(1:header.dim(2), 1:header.dim(1), 1:header.dim(3));
-    [fo, vo] = isosurface(X, Y, Z, vol, str2num(isoValue));
+    if ~isempty(MPM) && (isnumeric(MPM) || isscalar(MPM) || MPM ~= 0)
+        [fo, vo] = isosurface(X, Y, Z, vol, str2num(isoValue));
+    else
+        [fo, vo] = isosurface(X, Y, Z, vol, MPM);
+    end
+    
 
     % Aktivieren des übergebenen Figure-Handles
     figure(h_figure);
