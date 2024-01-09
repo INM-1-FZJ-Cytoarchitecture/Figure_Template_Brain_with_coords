@@ -1,6 +1,6 @@
 # MATLAB Script plot coordinates as spheres within MNI152 template
 
-![output](output.jpg){ width=1000px }
+![output](output.jpg)
 
 ## Table of Contents
 1. [Install](#Install)
