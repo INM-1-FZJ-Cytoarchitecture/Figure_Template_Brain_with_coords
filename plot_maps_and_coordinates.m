@@ -64,7 +64,7 @@ clc;
 %       % h_fig = plot_excel_data_on_figure(h_fig, template,'FEF_activations_Bedini_2021_and_iFEF.xlsx');
 %
 
-hfig = plot_excel_data_on_figure(hfig,template,'FEF_activations_Bedini_2021_and_iFEF.xlsx');
+[hfig, functional_studies_mni_space] = plot_excel_data_on_figure(hfig,template,'FEF_activations_Bedini_2021_and_iFEF.xlsx');
 %%
 % 
 %   function [h_figure, h_patch] = plot_isosurface(h_figure, niftiFilename, displayName, isoValue, faceColor, edgeColor, faceAlpha)
@@ -92,19 +92,19 @@ hfig = plot_excel_data_on_figure(hfig,template,'FEF_activations_Bedini_2021_and_
 
 %plotte eine Karte und definiere den Namen der Karte in der Legende mit
 %default Werten für isovalue und weitere Parameter
-[hfig, h_patch_Fp1] = plot_pmap(hfig, 'Area-Fp1_pmap_l_N10_nlin2ICBM152asym2009c.nii', 'Fp1');
+[hfig, h_patch_Fp1, functional_studies_mni_space] = plot_pmap(hfig,  functional_studies_mni_space,'Area-Fp1_pmap_l_N10_nlin2ICBM152asym2009c.nii', 'Fp1');
 
 %plotte eine weitere Karte und definiere den Namen der Karte in der
 %Legende. Isowert, RGB Wert und weitere Parameter können angepasst werden.
 %Siehe Funktions definnition weiter oben. Reihenfolge beachten!
-[hfig, h_patch_6v2] = plot_pmap(hfig, '6v2_l.nii', '6v2\_l','0.001',[1 0 0],'none',0.2);
+[hfig, h_patch_6v2, functional_studies_mni_space] = plot_pmap(hfig, functional_studies_mni_space, '6v2_l.nii', '6v2\_l','0.001',[1 0 0],'none',0.2);
 % wiederhole diese Zeile mit jeder Karte die geplottet werden soll
 
 %plotte eine Karte aus einer MPM und definiere den Namen der Karte in der
 %Legende. Isowert wird ignoriert, dafür muss 'MPM' definiert sein und ein
 %Integer ungleich null, welcher den Grauwert der Karte in der MPM angiebt.
 %Weitere Karten aus der MPM können durch dublizierung der Zeile erfolgen.
-[hfig, h_patch_MFG4] = plot_pmap(hfig, 'JulichBrainAtlas_3.1_206areas_MPM_lh_Colin27_filling.nii', 'MFG4\_l','103',[0 0 1],'none',0.1,'MPM',103);
+[hfig, h_patch_MFG4, functional_studies_mni_space] = plot_pmap(hfig,  functional_studies_mni_space,'JulichBrainAtlas_3.1_206areas_MPM_lh_Colin27_filling.nii', 'MFG4\_l','103',[0 0 1],'none',0.1,'MPM',103);
 
 %%
 %es werde Licht

@@ -1,4 +1,4 @@
-function h_figure = plot_excel_data_on_figure(h_figure, template, excelFilename)
+function [h_figure,functional_studies_mni_space]  = plot_excel_data_on_figure(h_figure, template, excelFilename)
     % plot_excel_data_on_figure visualisiert Daten aus einer Excel-Datei auf einem gegebenen Figure-Handle.
     %
     % Eingabeparameter:
