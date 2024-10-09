@@ -68,11 +68,11 @@ The script performs the following main functions:
 
 ### 3. `plot_excel_data_on_figure(h_figure, template, excelFilename)`
 - **Input parameters**: `h_figure` (figure handle), `template` (NIFTI header), `excelFilename` (filename).
-- **Output**: `h_figure` (updated figure handle).
+- **Output**: `h_figure` (updated figure handle), `functional_studies_mni_space` (table including coordinates and studies).
 
 ### 4. `plot_isosurface(h_figure, niftiFilename, displayName, isoValue, faceColor, edgeColor, faceAlpha)`
-- **Input parameters**: `h_figure` (figure handle), `niftiFilename` (file path), `displayName` (for legend), iso-value (`isoValue`), color settings (`faceColor`, `edgeColor`), and transparency (`faceAlpha`).
-- **Output**: `h_figure` (updated figure handle), `h_patch` (patch handle).
+- **Input parameters**: `h_figure` (figure handle), `functional_studies_mni_space` (table), `niftiFilename` (file path), `displayName` (for legend), iso-value (`isoValue`), color settings (`faceColor`, `edgeColor`), and transparency (`faceAlpha`).
+- **Output**: `h_figure` (updated figure handle), `h_patch` (patch handle),`functional_studies_mni_space` (table including coordinates and studies and the p values of the coordinates within the choosen pmap).
 
 ---
 
